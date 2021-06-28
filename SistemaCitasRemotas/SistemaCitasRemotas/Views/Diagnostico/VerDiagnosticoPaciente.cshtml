@@ -1,0 +1,50 @@
+﻿@model List<SistemaCitasRemotas.Models.Diagnostico>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="card-header">
+
+    <a href="~/Diagnostico/AgregarEditar" class="btn btn-info float-right">Nuevo Diagnostico</a>
+</h2>
+
+@using (Html.BeginForm("VerDiagnosticoPaciente", "Diagnostico", FormMethod.Post, new { usuario = "frm-usuario" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar:")
+        @Html.TextBox("criterio")
+        <button type="submit" class="btn btn-secondary">Buscar</button>
+    </div>}
+
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>CODIGO</th>
+            <th>NOMBRE</th>
+            <th>DESCRIPCION</th>
+            <th>ESTADO</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@(m.id)</td>
+                <td>@(m.codigo)</td>
+                <td>@(m.nombre)</td>
+                <td>@(m.descripcion)</td>
+                <td>@(m.estado.Equals("activo")?"ACTIVO" : "INACTIVO" )</td>
+
+                <td style="align-content:center">
+
+                    <a href="~/Diagnostico/AgregarEditar/@m.id" class="btn btn-primary">Modificar</a>
+                    <a href="~/Diagnostico/Eliminar/@m.id" class="btn btn-danger" onclick="return confirm('¿Esta seguro de eliminar el registro?')">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+﻿
+@model List<SistemaCitasRemotas.Models.Cita>
+@{ ViewBag.Title = "Citas"; }
+
+<h2>Citas</h2>
+
+
+<h2 class="page-header">
+    <a class="btn btn-dark float-right" href="~/Cita/AgregarEditar">Nueva Cita</a>
+</h2>
+
+@using (Html.BeginForm("Index", "Cita", FormMethod.Post, new { Cita = "frm-Cita" }))
+{
+<div class="text-left">
+    @Html.Label("Buscar: ")
+    @Html.TextBox("criterio")
+    <button type="submit" class="btn btn-secondary">Buscar</button>
+
+</div>}
+
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Paciente</th>
+            <th>Medico</th>
+            <th>Tipo de Cita</th>
+            <th>Fecha y Hora</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+<tr>
+    <td>@(m.id)</td>
+    <td>@(m.Usuario.nombres), @(m.Usuario.apellidos) </td>
+    <td>@(m.Medico.nombres) @(m.Medico.apellidos)</td>
+    <td>@(m.tipoCita)</td>
+    <td>@(m.inicio)</td>
+    <td>@(m.estadoCita)</td>
+    <td style="align-content:center">
+        <a href="~/Cita/Visualizar/@m.id" class="btn btn-warning">Detalle</a>
+        <a href="~/Cita/AgregarEditar/@m.id" class="btn btn-primary">Modificar</a>
+        <a href="~/Cita/Eliminar/@m.id" class="btn btn-danger" onclick="return confirm('¿Estas seguro de eliminar el registro ...?');">Eliminar</a>
+    </td>
+</tr>}
+    </tbody>
+</table>

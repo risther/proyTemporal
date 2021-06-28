@@ -1,0 +1,69 @@
+﻿@model SistemaCitasRemotas.Models.Horario
+@{ ViewBag.Title = "AgregarEditar";
+    //List<SistemaCitasRemotas.Models.TipoUsuario> TipoUsuario = ViewBag.TipoUsuario;
+}
+
+<h2>Registro</h2>
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Horario/Index">Horario</a></li>
+        <li class="breadcrumb-item active">@Model.id</li>
+    </ol>
+</nav>
+<br />
+<br />
+
+@using (Html.BeginForm("Guardar", "Horario", FormMethod.Post))
+{
+
+
+    <div class="card">
+        <div class="card-header">Llene el formulario</div>
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.id)
+                @Html.TextBoxFor(x => x.id, new { @class = "form-control", disabled = true })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.inicio)¡
+                <input type="time" name="inicio" class="form-control" />
+            </div>
+           
+
+            @*<div class="form-group">
+                <input type="time" value="" />
+
+
+                @Html.LabelFor(x => x.final)
+                @Html.TextBoxFor(x => x.final, new { @class = "form-control" })
+            </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.final)
+                <input type="time" name="final" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.estado)
+                <select name="estado" class="form-control">
+                    <option @(Model.estado == "" ? "selected" : "" ) value="">Seleccion</option>
+                    <option @(Model.estado == "activo" ? "selected" : "" ) value="activo">Activo</option>
+                    <option @(Model.estado == "inactivo" ? "selected" : "" ) value="inactivo">Inactivo</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.estado, null, new { @class = "text-danger" })
+
+            </div>
+
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="~/Horario" class="btn btn-danger">Cancelar</a>
+            </div>
+
+        </div>
+
+
+    </div>}

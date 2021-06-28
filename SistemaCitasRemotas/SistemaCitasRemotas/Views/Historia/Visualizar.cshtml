@@ -1,0 +1,56 @@
+﻿@model SistemaCitasRemotas.Models.Historia
+@{
+    ViewBag.Title = "Visualizar";
+    List<SistemaCitasRemotas.Models.Diagnostico> Diagnostico = ViewBag.Diagnostico;
+    List<SistemaCitasRemotas.Models.Usuario> Usuario = ViewBag.Usuario;
+}
+
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript: history.go(-1)"></a>Atras</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header">Informacion del Semestre</div>
+    <div class="card-body">
+        <dl class="list-group-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.id</dd>
+            <dt>Usuario</dt>
+            @foreach (var d in Usuario)
+            {
+                if (d.id == @Model.idUsuario)
+                {
+
+                    <dd> @d.nombres , @d.apellidos</dd>
+                }
+
+
+            }
+            <dt>Diagnostico</dt>
+
+
+            @foreach (var d in Diagnostico)
+            {
+                if (d.id == @Model.idDiagnostico)
+                {
+
+                    <dd> @d.descripcion</dd>
+                }
+
+
+            }
+
+
+            <dt>Detalles</dt>
+
+            <dd>@Model.detalles </dd>
+
+
+        </dl>
+    </div>
+</div>
+

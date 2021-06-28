@@ -1,0 +1,83 @@
+﻿@model SistemaCitasRemotas.Models.HorarioDia
+@{ ViewBag.Title = "AgregarEditar";
+    List<SistemaCitasRemotas.Models.Especialidad> Especialidad = ViewBag.Especialidad;
+    List<SistemaCitasRemotas.Models.Horario> Horario = ViewBag.Horario;
+    List<SistemaCitasRemotas.Models.Dia> Dia = ViewBag.Dia;
+}
+
+<h2>Registro</h2>
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/HorarioDia/Index">Horario</a></li>
+        <li class="breadcrumb-item active">@Model.id</li>
+    </ol>
+</nav>
+<br />
+<br />
+
+@using (Html.BeginForm("Guardar", "HorarioDia", FormMethod.Post))
+{
+
+
+    <div class="card">
+        <div class="card-header">Llene el formulario</div>
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.id)
+                @Html.TextBoxFor(x => x.id, new { @class = "form-control", disabled = true })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.idEspecialidad)
+                <select name="idEspecialidad" class="form-control">
+                    <option @(Model.idEspecialidad.Equals("") ? "selected" : "" ) value="">Seleccione</option>
+
+                    @foreach (var d in Especialidad)
+                    {
+                        <option @(Model.idEspecialidad.Equals(d.id) ? "selected" : "") value="@d.id">@d.nombre</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(x => x.idEspecialidad, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.idHorario)
+                <select name="idHorario" class="form-control">
+                    <option @(Model.idHorario.Equals("") ? "selected" : "" ) value="">Seleccione</option>
+
+                    @foreach (var d in Horario)
+                    {
+                        <option @(Model.idHorario.Equals(d.id) ? "selected" : "") value="@d.id">@d.inicio - @d.final  </option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(x => x.idHorario, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.idDia)
+                <select name="idDia" class="form-control">
+                    <option @(Model.idDia.Equals("") ? "selected" : "" ) value="">Seleccione</option>
+
+                    @foreach (var d in Dia)
+                    {
+                        <option @(Model.idDia.Equals(d.id) ? "selected" : "") value="@d.id">@d.dia1 </option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(x => x.idDia, null, new { @class = "text-danger" })
+            </div>
+
+
+
+
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="~/HorarioDia" class="btn btn-danger">Cancelar</a>
+            </div>
+
+        </div>
+
+
+    </div>}

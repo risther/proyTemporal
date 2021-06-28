@@ -1,0 +1,50 @@
+﻿
+@model List<SistemaCitasRemotas.Models.Receta>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="card-header">
+
+    <a href="~/Receta/AgregarEditar/" class="btn btn-info float-right">Nueva Receta</a>
+</h2>
+
+@using (Html.BeginForm("Index", "Receta", FormMethod.Post, new { usuario = "frm-receta" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar:")
+        @Html.TextBox("criterio")
+        <button type="submit" class="btn btn-secondary">Buscar</button>
+    </div>}
+
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Medico</th>
+            <th>Indicaciones</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@(m.id)</td>
+                <td>@(m.Usuario.nombres)</td>
+                <td>@(m.Medico.nombres)</td>
+                <td>@(m.indicaciones)</td>
+                <td>@(m.fecha)</td>
+                <td>@(m.estado.Equals("activo")?"Activo" : "Inactivo" )</td>
+                <td style="align-content:center">
+                    <a href="~/Receta/AgregarEditar/@m.id" class="btn btn-primary">Modificar</a>
+                    <a href="~/Receta/Eliminar/@m.id" class="btn btn-danger" onclick="return confirm('¿Esta seguro de eliminar el registro?')">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,146 @@
+﻿@{ Layout = null;
+                string controlador = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+                int idusuario = SistemaCitasRemotas.Models.SessionHelper.GetUser();
+
+                if (true)
+                {
+
+                }
+
+                SistemaCitasRemotas.Models.Usuario usuario =
+                    new SistemaCitasRemotas.Models.Usuario().Obtener(idusuario);
+
+                //int idmedico = SistemaCitasRemotas.Models.SessionHelper.GetUser();
+                SistemaCitasRemotas.Models.Medico usumed =
+                    new SistemaCitasRemotas.Models.Medico().Obtener(idusuario); }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!--Boostrap-->
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--HighCharts CSS-->
+    <link href="~/assets/css/highcharts.css" rel="stylesheet" />
+    <!--DataTables-->
+    <link href="~/assets/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="~/assets/DataTables/css/dataTables.semanticui.min.css" rel="stylesheet" />
+    <link href="~/assets/DataTables/css/dataTables.foundation.min.css" rel="stylesheet" />
+
+    <!--personal styles-->
+    <link href="~/assets/css/templatecss/animate.min.css" rel="stylesheet" />
+    <link href="~/assets/css/templatecss/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/assets/css/templatecss/tether.min.css" rel="stylesheet" />
+    <link href="~/assets/css/templatecss/style.css" rel="stylesheet" />
+    <link href="~/assets/css/templatecss/demo.css" rel="stylesheet" />
+    <!--Jquery-->
+    <script src="~/assets/js/jquery-3.6.0.min.js"></script>
+    <!--HighCharts JS-->
+    <script src="~/assets/js/highcharts.js"></script>
+    <script src="~/assets/js/highcharts-3d.js"></script>
+    <script src="~/assets/js/highcharts-more.js"></script>
+    <script src="~/assets/js/exporting.js"></script>
+    <script src="~/assets/js/offline-exporting.js"></script>
+
+</head>
+<body>
+    <div id="wrapper">
+        @*<div class="overlay"></div>*@
+
+        <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <div class="sidebar-header">
+                    <div class="sidebar-brand">
+                        <a href="~/Home/Index" class="logo">Citas <span class="lite">Medicas</span></a>
+                    </div>
+                </div>
+
+
+
+
+
+
+                @if (controlador != "login" && controlador != "home" && idusuario != 0)
+                {
+            <li><a href="#home">Medico @usumed.nombres, @usumed.apellidos</a></li>
+                            <li><a href="~/Cita">Citas</a></li>
+                                            <li><a href="#events">Events</a></li>
+                                                            <li><a href="#team">Team</a></li>
+ }
+                                                        else if (controlador != "login" && controlador != "medico" && idusuario != 0)
+                                                        {
+                                            <li><a href="#home">Paciente  @usuario.nombres, @usuario.apellidos</a></li>
+                                                            <li><a href="#about">About</a></li>
+                                                                            <li><a href="#events">Events</a></li>
+                                                                                            <li><a href="#team">Team</a></li>
+ } @*<li class="dropdown">
+                                                                                    <a href="#works" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+                                                                                    <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                                                                                        <div class="dropdown-header">Dropdown heading</div>
+                                                                                        <li><a href="#pictures">Pictures</a></li>
+                                                                                        <li><a href="#videos">Videeos</a></li>
+                                                                                        <li><a href="#books">Books</a></li>
+                                                                                        <li><a href="#art">Art</a></li>
+                                                                                        <li><a href="#awards">Awards</a></li>
+                                                                                    </ul>
+                                                                                </li>*@
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#followme">Follow me</a></li>
+                <li><a href="~/Login/Logout">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+
+
+
+
+
+        <!-- Sidebar -->
+        <!-- /#sidebar-wrapper -->
+
+
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <div class="container">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <!--Boostrap-->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    @* RESPONSE MODEL *@
+    <script src="~/assets/js/ini.js"></script>
+    <script src="~/assets/js/jquery.form.js"></script>
+    <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="~/assets/js/jquery.validate.unobtrusive.min.js"></script>
+    <!--DataTables-->
+    <script src="~/assets/DataTables/datatables.min.js"></script>
+
+    <!--personal js-->
+    @*<script src="~/assets/js/templatejs/jquery-3.3.1.slim.min.js"></script> daba error*@
+    <script src="~/assets/js/templatejs/popper.min.js"></script>
+    <script src="~/assets/js/templatejs/tether.min.js"></script>
+    <script src="~/assets/js/templatejs/script.js"></script>
+</body>
+</html>
+<script>$(document).ready(function () {
+        $('#example').DataTable({
+            "order": [[3, "desc"]]
+        });
+    });
+
+    $(document).ready(function () {
+        $('#Vertical').DataTable({
+            "scrollY": "200px",
+            "scrollCollapse": true,
+            "paging": false
+        });
+    });</script>

@@ -1,0 +1,53 @@
+﻿@model List<SistemaCitasRemotas.Models.HorarioDia>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="card-header">
+
+    <a href="~/HorarioDia/AgregarEditar/" class="btn btn-info float-right">Nuevo Horario para Escpecialidad</a>
+</h2>
+
+@using (Html.BeginForm("Index", "Horario", FormMethod.Post, new { usuario = "frm-usuario" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar:")
+        @Html.TextBox("criterio")
+        <button type="submit" class="btn btn-secondary">Buscar</button>
+    </div>}
+
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>ESPECIALIDAD</th>
+            <th>DIA</th>
+            <th>ID HORARIO</th>
+            <th>INICIO</th>
+            <th>FINAL</th>
+            <th>ESTADO</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+            <td>@(m.id)</td>
+            <td>@(m.Especialidad.nombre)</td>
+            <td>@(m.Dia.dia1)</td>
+            <td>@(m.idHorario)</td>
+            <td>@(m.Horario.inicio)</td>
+            <td>@(m.Horario.final)</td>
+
+            <td style="align-content:center">
+
+                <a href="~/HorarioDia/AgregarEditar/@m.id" class="btn btn-primary">Modificar</a>
+                <a href="~/HorarioDia/Eliminar/@m.id" class="btn btn-danger" onclick="return confirm('¿Esta seguro de eliminar el registro?')">Eliminar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

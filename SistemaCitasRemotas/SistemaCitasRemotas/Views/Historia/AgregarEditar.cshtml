@@ -1,0 +1,75 @@
+﻿@model SistemaCitasRemotas.Models.Historia
+@{ ViewBag.Title = "AgregarEditar";
+    List<SistemaCitasRemotas.Models.Diagnostico> Diagnostico = ViewBag.Diagnostico;
+         List<SistemaCitasRemotas.Models.Usuario> Usuario = ViewBag.Usuario;
+}
+
+<h2>Registro</h2>
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Historia/Index">Historia</a></li>
+        <li class="breadcrumb-item active">@Model.id</li>
+    </ol>
+</nav>
+<br />
+<br />
+
+@using (Html.BeginForm("Guardar", "Historia", FormMethod.Post))
+{
+
+
+    <div class="card">
+        <div class="card-header">Llene el formulario</div>
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.id)
+                @Html.TextBoxFor(x => x.id, new { @class = "form-control", disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.idUsuario)
+                <select name="idUsuario" class="form-control">
+                    <option @(Model.idUsuario.Equals("") ? "selected" : "" ) value="">Seleccione</option>
+
+                    @foreach (var d in Usuario)
+                    {
+                        <option @(Model.idUsuario.Equals(d.id) ? "selected" : "") value="@d.id">@d.nombres </option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(x => x.idUsuario, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.idDiagnostico)
+                <select name="idDiagnostico" class="form-control">
+                    <option @(Model.idDiagnostico.Equals("") ? "selected" : "" ) value="">Seleccione</option>
+
+                    @foreach (var d in Diagnostico)
+                    {
+                        <option @(Model.idDiagnostico.Equals(d.id) ? "selected" : "") value="@d.id">@d.nombre </option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(x => x.idDiagnostico, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.detalles)
+                @Html.TextBoxFor(x => x.detalles, new { @class = "form-control" })
+            </div>
+
+
+
+
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="~/Historia" class="btn btn-danger">Cancelar</a>
+            </div>
+
+        </div>
+
+
+    </div>}

@@ -1,0 +1,86 @@
+﻿@model SistemaCitasRemotas.Models.Receta
+@{ ViewBag.Title = "AgregarEditar";
+    List<SistemaCitasRemotas.Models.Usuario> usuario = ViewBag.Usuario;
+}
+
+<h2>Agregar / Editar</h2>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Receta/Index">Receta</a></li>
+        <li class="breadcrumb-item active">@Model.id</li>
+    </ol>
+</nav>
+
+<br />
+<br />
+<h2 class="card-header">
+
+    <a href="javascript: history.go(-1)" class="btn btn-info float-right">Volver</a>
+</h2>
+@using (Html.BeginForm("Guardar", "Receta", FormMethod.Post))
+{
+    @Html.HiddenFor(X => X.id)
+
+    <div class="card">
+        <div class="card-header">Receta</div>
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.id)
+                @Html.TextBoxFor(x => x.id, new { @class = "form-control", disabled = true })
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.idMedico)
+                @Html.TextBoxFor(x => x.idMedico, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.idMedico, null, new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.idUsuario)
+                <select name="idUsuario" class="form-control">
+                    <option @(Model.idUsuario.Equals("") ? "selected" : "") value="">Seleccione</option>
+
+                    @foreach (var d in usuario)
+                    {
+                        <option @(Model.idUsuario.Equals(d.id) ? "selected" : "") value="@d.id">@d.apellidos,@d.nombres</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(x => x.idUsuario, null, new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.fecha)
+                @Html.TextBoxFor(x => x.fecha, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.fecha, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.indicaciones)
+                @Html.TextBoxFor(x => x.indicaciones, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.indicaciones, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.estado)
+                <select name="estado" class="form-control">
+                    <option @(Model.estado == "" ? "selected" : "" ) value="">Seleccion</option>
+                    <option @(Model.estado == "activo" ? "selected" : "" ) value="activo">Activo</option>
+                    <option @(Model.estado == "inactivo" ? "selected" : "" ) value="inactivo">Inactivo</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.estado, null, new { @class = "text-danger" })
+
+            </div>
+
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="javascript: history.go(-1)">Cancelar</a>
+            </div>
+
+        </div>
+    </div>}

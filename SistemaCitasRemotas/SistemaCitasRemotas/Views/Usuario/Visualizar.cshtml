@@ -1,0 +1,39 @@
+﻿@model SistemaCitasRemotas.Models.Usuario
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/semestre/Index"></a>Usuario</li>
+        <li class="breadcrumb-item active">@Model.nombres</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header">Informacion del Semestre</div>
+    <div class="card-body">
+        <dl class="list-group-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.id</dd>
+            <dt>Tipo Usuario</dt>
+            <td>@Model.idTipoUsuario</td>
+            <dt>Nombres</dt>
+            <dd>@Model.nombres ,@Model.apellidos</dd>
+            <dt>Correo</dt>
+            <dd>@Model.correo</dd>
+            <dt>DNI</dt>
+            <dd>@Model.dni </dd>
+            <dt>Clave</dt>
+            <dd>@Model.clave</dd>
+            <dt>Telefono</dt>
+            <dd>@Model.telefono</dd>
+            <dt>Estado</dt>
+            <dd>@Model.estado</dd>
+
+        </dl>
+    </div>
+</div>
+

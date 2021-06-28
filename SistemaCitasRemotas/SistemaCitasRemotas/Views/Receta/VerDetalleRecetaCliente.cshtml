@@ -1,0 +1,31 @@
+﻿@model SistemaCitasRemotas.Models.Receta
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/ListarRecetaCliente/@Model.idUsuario"></a>Usuario</li>
+        <li class="breadcrumb-item active">@Model.idUsuario</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header">Informacion del Semestre</div>
+    <div class="card-body">
+        <dl class="list-group-horizontal">
+            <dt>Medico</dt>
+            <dd>@Model.idMedico</dd>
+            <dt>Indicaciones</dt>
+            <dd>@Model.indicaciones</dd>
+            <dt>Fecha</dt>
+            <dd>@Model.fecha</dd>
+            <dt>Estado</dt>
+            <dd>@Model.estado</dd>
+
+        </dl>
+    </div>
+</div>
+

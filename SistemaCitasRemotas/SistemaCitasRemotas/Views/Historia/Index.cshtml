@@ -1,0 +1,48 @@
+﻿@model List<SistemaCitasRemotas.Models.Historia>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="card-header">
+
+    <a href="~/Historia/AgregarEditar/" class="btn btn-info float-right">Nueva Historia</a>
+</h2>
+
+@using (Html.BeginForm("Index", "Historia", FormMethod.Post, new { usuario = "frm-usuario" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar:")
+        @Html.TextBox("criterio")
+        <button type="submit" class="btn btn-secondary">Buscar</button>
+    </div>}
+
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>USUARIO</th>
+            <th>DIAGNOSTICO</th>
+            <th>RECETA</th>
+            <th>Detalles</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+            <td>@(m.id)</td>
+            <td>@(m.Usuario.nombres)</td>
+            <td>@(m.detalles)</td>
+            <td>de: @(m.Diagnostico.nombre)</td>
+
+            <td style="align-content:center">
+
+                <a href="~/Historia/AgregarEditar/@m.id" class="btn btn-primary">Modificar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

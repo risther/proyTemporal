@@ -1,0 +1,48 @@
+﻿
+@{ ViewBag.Title = "Index"; }
+
+<h2>Index</h2>
+<li class="breadcrumb-item"><a href="~/Receta/ListarRecetaMedico/1">RecetaMedico</a></li>
+<li class="breadcrumb-item"><a href="~/Receta/ListarRecetaCliente/1">RecetaCliente</a></li>
+
+<li class="breadcrumb-item"><a href="~/Diagnostico/VerDiagnosticoPaciente/1">DiagnosticoPaciente</a></li>
+
+<li class="breadcrumb-item"><a href="~/Historia/VerHistoriaUsuario/2">Historia Paciente</a></li>
+
+<li class="breadcrumb-item"><a href="~/Medico/Index">AgregarMedico</a></li>
+
+@if (ViewBag.ListaEventos != null)
+{
+<table class="table table-hover">
+    <tr>
+        <th>Cita</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Enlace Meet</th>
+        <th>Acciones</th>
+    </tr>
+    @foreach (var item in ViewBag.ListaEventos)
+    {
+<tr>
+    <td>@item.citaNombre</td>
+    <td>@item.citahora.ToLongDateString()</td>
+    <td>@item.citahora.ToShortTimeString()</td>
+    <td>@item.linkmeet</td>
+    @if (item.linkmeet != "")
+    {
+<td><a class="btn btn-success" href="@item.linkmeet">Unirse</a></td>
+ }
+else
+{
+<td></td>
+}
+
+
+
+
+</tr>
+}
+</table> }
+else
+{
+<div class="alert alert-danger">No Hay eventos por ahora</div>}

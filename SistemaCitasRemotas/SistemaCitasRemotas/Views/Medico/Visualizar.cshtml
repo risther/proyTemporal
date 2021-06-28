@@ -1,0 +1,39 @@
+﻿@model SistemaCitasRemotas.Models.Medico
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Medico/Index"></a>Medico</li>
+        <li class="breadcrumb-item active">@Model.nombres</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header">Informacion del Semestre</div>
+    <div class="card-body">
+        <dl class="list-group-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.id</dd>
+            <dt>Nombre</dt>
+            <dd>@Model.idTipoUsuario</dd>
+            <dt>Año</dt>
+            <dd>@Model.idEspecialidad</dd>
+            <dt>Estado</dt>
+            <dd>(@Model.nombres),(@Model.apellidos)</dd>
+            <dt>Estado</dt>
+            <dd>@Model.telefono</dd>
+            <dt>Estado</dt>
+            <dd>@Model.correo</dd>
+            <dt>Estado</dt>
+            <dd>@Model.clave</dd>
+            <dt>Estado</dt>
+            <dd>@Model.estado</dd>
+
+        </dl>
+    </div>
+</div>
+

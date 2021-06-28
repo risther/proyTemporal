@@ -1,0 +1,30 @@
+﻿@model SistemaCitasRemotas.Models.Cita
+@{ ViewBag.Title = "Visualizar"; }
+
+<h2>Visualizar</h2>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Cita/Index">Cita</a></li>
+        <li class="breadcrumb-item active">Cita Nro @Model.id</li>
+    </ol>
+</nav>
+
+
+<div class="tab-content">
+    <div class="card-header">Información del Usuario</div>
+    <div class="card-body">
+        <dl class="list-group-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.id</dd>
+            <dt>Medico</dt>
+            <dd>@Model.Medico.nombres @Model.Medico.apellidos</dd>
+            <dt>Paciente</dt>
+            <dd>@(Model.Usuario.nombres), @(Model.Usuario.apellidos) </dd>
+            <dt>Fecha</dt>
+            <dd>@Model.inicio</dd>
+            <dt>Estado</dt>
+            <dd>@Model.estadoCita</dd>
+        </dl>
+    </div>
+</div>
